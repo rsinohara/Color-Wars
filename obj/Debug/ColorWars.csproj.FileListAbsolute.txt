@@ -1,0 +1,6 @@
+C:\Users\Renato\OneDrive\SPI\Portfolio\ColorWars\bin\Debug\ColorWars.dll
+C:\Users\Renato\OneDrive\SPI\Portfolio\ColorWars\bin\Debug\ColorWars.pdb
+C:\Users\Renato\OneDrive\SPI\Portfolio\ColorWars\obj\Debug\ColorWars.dll
+C:\Users\Renato\OneDrive\SPI\Portfolio\ColorWars\obj\Debug\ColorWars.pdb
+C:\Users\Renato\OneDrive\SPI\Portfolio\ColorWars\bin\Debug\Tests\GameGrid_WhenCreated_HasData.html
+C:\Users\Renato\OneDrive\SPI\Portfolio\ColorWars\bin\Debug\Core\GameGrid.js
