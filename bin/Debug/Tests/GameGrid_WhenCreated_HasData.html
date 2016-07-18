@@ -7,8 +7,10 @@
     <meta charset="utf-8" />
     <title></title>
     <script src="../Libraries/jquery-1.10.2.js"></script>
+    <script src="../Core/utilities.js"></script>
     <script src="../Core/gameCell.js"></script>
     <script src="../Core/gameGrid.js"></script>
+
 </head>
 <body>
 
@@ -20,6 +22,7 @@
     </div>
     <div id="result"></div>
 
+    <p>This grid is shown in the format color(owning player). Owning player is set to 0 = no player.</p>
 
     <script type="text/javascript">
         function InitGrid() {
@@ -28,8 +31,7 @@
             var grid = new gameGrid;
 
             grid.initializeGrid(width, height);
-            $('#result').text(grid.grid);
-            alert(grid.grid);
+            $('#result').html(grid.gridToText());
 
         }
     </script>

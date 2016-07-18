@@ -7,3 +7,5 @@ C:\Users\Renato\OneDrive\SPI\Portfolio\ColorWars\bin\Debug\Core\GameGrid.js
 C:\Users\Renato\OneDrive\SPI\Portfolio\ColorWars\obj\Debug\ColorWars.csprojResolveAssemblyReference.cache
 C:\Users\Renato\OneDrive\SPI\Portfolio\ColorWars\bin\Debug\Core\gameCell.js
 C:\Users\Renato\OneDrive\SPI\Portfolio\ColorWars\bin\Debug\Libraries\jquery-1.10.2.js
+C:\Users\Renato\OneDrive\SPI\Portfolio\ColorWars\bin\Debug\Core\utilities.js
+C:\Users\Renato\OneDrive\SPI\Portfolio\ColorWars\bin\Debug\Tests\GameGrid_DrawsCorrectly.html
