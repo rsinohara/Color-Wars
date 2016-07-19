@@ -1,0 +1,41 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+
+    <meta charset="utf-8" />
+    <title></title>
+    <script src="../Libraries/jquery-1.10.2.js"></script>
+    <script src="../Core/utilities.js"></script>
+    <script src="../Core/gameCell.js"></script>
+    <script src="../Core/gameGrid.js"></script>
+
+</head>
+<body>
+
+    <div>
+        <p>This tests grid initialization. Choose a width and a height, and click. It should initialize a random game grid and display it.</p>
+        <span>Width:</span> <input type="text" id="width" width="4" value="12"/>
+        <span>Height:</span> <input type="text" id="height" width="4" value="8"/>
+        <input type="submit" onclick="InitGrid()" value="Initialize"/>
+    </div>
+    <div id="result"></div>
+
+    <p>This grid is shown in the format color(owning player). Owning player is set to 0 = no player.</p>
+
+    <script type="text/javascript">
+        function InitGrid() {
+            var height = $('#height').val();
+            var width = $('#width').val();
+            var grid = new gameGrid;
+
+            grid.initializeGrid(width, height);
+            $('#result').html(grid.gridToText());
+
+        }
+    </script>
+</body>
+
+
+</html>

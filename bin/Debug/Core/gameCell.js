@@ -1,4 +1,5 @@
-﻿class gameCell {
+﻿"use strict";
+class gameCell {
     //Color
     //Owner
 
@@ -8,8 +9,12 @@
         var colorTable = ["red", "orange", "yellow", "green", "blue", "purple", "white", "pink", "brown"];
 
         this.color = Math.floor(Math.random() * 9) ;
-        this.colorString = colorTable[this.color];
         this.owner = 0;
+        this.surrounded = false;
+    }
+
+    colorString(){
+        return getColorString(this.color);
     }
 
     toString() {

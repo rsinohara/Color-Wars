@@ -1,5 +1,4 @@
-﻿"use strict";
-var colorTable = ["red", "orange", "yellow", "green", "blue", "purple", "white", "pink", "brown"];
+﻿var colorTable = ["red", "orange", "yellow", "green", "blue", "purple", "white", "pink", "brown"];
 
 function getColorString(color)
 {

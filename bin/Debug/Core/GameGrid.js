@@ -1,4 +1,4 @@
-﻿
+﻿"use strict";
 class gameGrid {
 
     initializeGrid(width, height) {
@@ -9,6 +9,8 @@ class gameGrid {
 
         this.grid = Array();
 
+        this.playerCells = Array();
+
         //Initializes grid with cells
         for(var i=0;i<height;i++)
         {
@@ -17,6 +19,8 @@ class gameGrid {
                 var cell = new gameCell();
                 cell.initRandom();
                 this.grid[i][j] = cell;
+                cell.x = j;
+                cell.y = i;
             }
         }
     }
@@ -59,13 +63,102 @@ class gameGrid {
 
 
     }
+    
+    setPlayerCell(x, y, player) {
+
+        this.playerCells[player]=Array();
+     
+        this.captureCell(x, y, player);
+    }
+
+    play(player,newColor)
+    {
+        for (var i = 0; i < this.playerCells[player].length;i++)
+        {
+            var cell= this.playerCells[player][i];
+            cell.color = newColor;
+            if(!cell.surrounded)
+            {
+                this.checkNeighbors(cell);
+            }
+        }
+
+        this.drawCanvas();
+        
+    }
+
+    captureCell(x,y,player)
+    {
+        this.grid[y][x].owner = player;
+        this.playerCells[player].push(this.grid[y][x]);
+        this.checkNeighbors(this.grid[y][x]);
+
+    }
+
+    checkNeighbors(cell) {
+        var surrounded = true;
+
+        //Setup deltas for neighbors
+        var deltasX = [-1,-1,0,0,1,1]
+        if (cell.x % 2 == 0) {
+            var deltasY = [0, 1, -1, 1, 0, 1]
+        }
+        else {
+            var deltasY = [-1, 0, -1, 1, -1, 0]
+        }
+
+        //Iterate through every neighbor
+        for (var i = 0; i <= 5; i++) {
+            var dx = deltasX[i];
+            var dy = deltasY[i];
+
+            var neighborX = cell.x + dx;
+            var neighborY = cell.y + dy;
+
+            //Check if neighbor is not out of the grid, or the same cell
+            if (((dx != 0) || (dy != 0)) &&
+                (neighborX >= 0) && (neighborX < this.horizontalCount) &&
+                (neighborY>=0) && (neighborY<this.verticalCount))
+            {
+                var neighbor = this.grid[neighborY][neighborX];
+
+                if(cell.owner!=neighbor.owner)
+                {
+                    //Oponent's cell: do nothing
+                    if (neighbor.owner != 0) {}
+                    //Capture
+                    else if(cell.color==neighbor.color){
+                        this.captureCell(neighborX, neighborY, cell.owner);
+                    }
+                    //Neighbor is not owned, not same color: mark cell as not surrounded
+                    else {
+                        surrounded = false;
+                    }
+
+                }
+            }
+            
+        }
+        cell.surrounded=surrounded
+    }
 
     drawCanvas(e) {
-        var ctx = e.getContext("2d");
+
+        //If a canvas was passed, save it
+        if (arguments.length >= 1)
+        {
+            this.canvas = e;
+            this.canvasContext = this.canvas.getContext("2d");
+        }
+
+        var ctx = this.canvasContext;
+        
 
         //Saves canvas dimensions
-        this.canvasHeight = e.height;
-        this.canvasWidth = e.width;
+        this.canvasHeight = this.canvas.height;
+        this.canvasWidth = this.canvas.width;
+
+        ctx.clearRect(0, 0, this.canvasWidth, this.canvasHeight);
 
         //Initializes drawing steps
         this.initSteps();
@@ -89,9 +182,16 @@ class gameGrid {
                 ctx.lineTo(center[0] + dx, center[1]);
                 ctx.lineTo(center[0] + dxSmall, center[1] + dy);
                 ctx.lineTo(center[0] - dxSmall, center[1] + dy);
-                ctx.fillStyle = this.grid[y][x].colorString;
+                ctx.fillStyle = this.grid[y][x].colorString();
                 ctx.fill();
 
+                if (this.grid[y][x].owner != 0) {
+                    ctx.font = dy + "px Arial";
+                    ctx.fillStyle = "black";
+                    ctx.fillText(this.grid[y][x].owner, center[0] - dy / 4, center[1] + dy / 3);
+                }
+
+               
             }
         }
 
