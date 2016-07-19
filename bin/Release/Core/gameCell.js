@@ -1,4 +1,5 @@
-﻿class gameCell {
+﻿"use strict";
+class gameCell {
     //Color
     //Owner
 

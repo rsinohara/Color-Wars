@@ -1,4 +1,4 @@
-﻿
+﻿"use strict";
 class gameGrid {
 
     initializeGrid(width, height) {
@@ -10,6 +10,9 @@ class gameGrid {
         this.grid = Array();
 
         this.playerCells = Array();
+        this.playerCountElements = Array();
+        this.players = Array();
+        this.currentPlayer = 1;
 
         //Initializes grid with cells
         for(var i=0;i<height;i++)
@@ -69,10 +72,29 @@ class gameGrid {
         this.playerCells[player]=Array();
      
         this.captureCell(x, y, player);
+        this.players.push(player);
+        if (player < this.currentPlayer) {
+            this.currentPlayer = player;
+        }
+        this.updateScores();
+    }
+
+    updateScores() {
+        for (var i = 0; i < this.players.length;i++)
+            //Display score if element was defined
+            if (this.playerCountElements[this.players[i]] != 'undefined') {
+                this.playerCountElements[this.players[i]].text(this.playerCells[this.players[i]].length);
+            }
     }
 
     play(player,newColor)
     {
+        if (this.currentPlayer != player)
+        {
+            console.warn("Not this player's turn!");
+            return;
+        }
+
         for (var i = 0; i < this.playerCells[player].length;i++)
         {
             var cell= this.playerCells[player][i];
@@ -85,14 +107,24 @@ class gameGrid {
 
         this.drawCanvas();
         
+        this.updateScores();
+
+        for (var i = 0; i < this.players.length; i++) {
+            if (this.players[i] == player) {
+                var nextPlayerIndex = (i + 1) % this.players.length;
+                this.currentPlayer = this.players[nextPlayerIndex];
+            }
+        }
+            
     }
 
     captureCell(x,y,player)
     {
         this.grid[y][x].owner = player;
         this.playerCells[player].push(this.grid[y][x]);
-        this.checkNeighbors(this.grid[y][x]);
-
+        if (!this.grid[y][x].surrounded) {
+            this.checkNeighbors(this.grid[y][x]);
+        }
     }
 
     checkNeighbors(cell) {

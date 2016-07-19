@@ -10,3 +10,5 @@ C:\Users\Renato\OneDrive\SPI\Portfolio\ColorWars\bin\Release\ColorWars.pdb
 C:\Users\Renato\OneDrive\SPI\Portfolio\ColorWars\obj\Release\ColorWars.dll
 C:\Users\Renato\OneDrive\SPI\Portfolio\ColorWars\obj\Release\ColorWars.pdb
 C:\Users\Renato\OneDrive\SPI\Portfolio\ColorWars\obj\Release\ColorWars.csprojResolveAssemblyReference.cache
+C:\Users\Renato\OneDrive\SPI\Portfolio\ColorWars\bin\Release\Tests\HotSeat.css
+C:\Users\Renato\OneDrive\SPI\Portfolio\ColorWars\bin\Release\Tests\HotSeatGame_Works.html
