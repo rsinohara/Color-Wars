@@ -1,0 +1,14 @@
+C:\Users\Renato\OneDrive\SPI\Portfolio\ColorWars\bin\Release\Core\gameCell.js
+C:\Users\Renato\OneDrive\SPI\Portfolio\ColorWars\bin\Release\Core\gameGrid.js
+C:\Users\Renato\OneDrive\SPI\Portfolio\ColorWars\bin\Release\Core\utilities.js
+C:\Users\Renato\OneDrive\SPI\Portfolio\ColorWars\bin\Release\Libraries\jquery-1.10.2.js
+C:\Users\Renato\OneDrive\SPI\Portfolio\ColorWars\bin\Release\Tests\GameGrid_DrawsCorrectly.html
+C:\Users\Renato\OneDrive\SPI\Portfolio\ColorWars\bin\Release\Tests\GameGrid_WhenCreated_HasData.html
+C:\Users\Renato\OneDrive\SPI\Portfolio\ColorWars\bin\Release\Tests\GameGrid_WhenPlayerChangesColor_CapturesCells.html
+C:\Users\Renato\OneDrive\SPI\Portfolio\ColorWars\bin\Release\ColorWars.dll
+C:\Users\Renato\OneDrive\SPI\Portfolio\ColorWars\bin\Release\ColorWars.pdb
+C:\Users\Renato\OneDrive\SPI\Portfolio\ColorWars\obj\Release\ColorWars.dll
+C:\Users\Renato\OneDrive\SPI\Portfolio\ColorWars\obj\Release\ColorWars.pdb
+C:\Users\Renato\OneDrive\SPI\Portfolio\ColorWars\obj\Release\ColorWars.csprojResolveAssemblyReference.cache
+C:\Users\Renato\OneDrive\SPI\Portfolio\ColorWars\bin\Release\Tests\HotSeat.css
+C:\Users\Renato\OneDrive\SPI\Portfolio\ColorWars\bin\Release\Tests\HotSeatGame_Works.html

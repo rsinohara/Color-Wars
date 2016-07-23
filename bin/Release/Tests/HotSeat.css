@@ -1,0 +1,38 @@
+﻿body
+{
+}
+
+
+.score{
+    border:2px solid red;
+    float:left;
+}
+
+.darkClass
+{
+    background-color: white;
+    filter:alpha(opacity=50); /* IE */
+    opacity: 0.5; /* Safari, Opera */
+    -moz-opacity:0.50; /* FireFox */
+    z-index: 20;
+    height: 100%;
+    width: 100%;
+    background-repeat:no-repeat;
+    background-position:center;
+    position:absolute;
+    top: 0px;
+    left: 0px;
+}
+
+.active-controls > .darkClass{
+    display:none;
+}
+
+.controls-container{
+    border:3px solid black;
+    position:relative;
+    display:block;
+}
+.active-controls{
+    border:3px solid red;
+}

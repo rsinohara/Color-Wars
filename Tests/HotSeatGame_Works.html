@@ -1,0 +1,94 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <script src="../Libraries/jquery-1.10.2.js"></script>
+    <script src="../Core/utilities.js"></script>
+    <script src="../Core/gameCell.js"></script>
+    <script src="../Core/gameGrid.js"></script>
+    <link rel="stylesheet" type="text/css" href="HotSeat.css">
+
+
+    <title></title>
+</head>
+<body>
+    <div>
+        <p>This tests that the cell capture works.</p>
+        <p>Pick new colors for the player, cells should be captured (till the board is all captured).</p>
+    </div>
+    
+    <div class="controls-container active-controls" data-player="1">
+        <div class="darkClass" ></div>
+        <span>Player 1 controls</span>
+        <div id="colorControls1"></div>
+    </div>
+    <br />
+    <div class="score">
+        <h3>Scores</h3>
+        <span>Player 1: </span> <span id="score1"></span>
+        <br />
+        <span>Player 2: </span><span id="score2"></span>
+    </div>
+    <canvas id="test" height="480" width="800" style="background-color:black"></canvas>
+    <input type="submit" value="Draw" onclick="drawClick()" />
+    
+    <div class="controls-container" data-player="2">
+        <div class="darkClass"></div>
+        <span>Player 2 controls</span>
+        <div id="colorControls2"></div>
+    </div>
+    <script type="text/javascript">
+
+        var grid = new gameGrid;
+        $(document).ready(function () {
+            drawClick();
+
+            createPlayerControls($('#colorControls1'), 1, ["1", "2", "3", "4", "5", "6", "7", "8", "9"]);
+            createPlayerControls($('#colorControls2'), 2, ["q","w","e","a","s","d","z","x","c"]);
+
+            $('.playerControl').click(function () {
+                var color = $(this).attr('data-color');
+                var player= $(this).attr('data-player');
+                grid.play(player, color);
+                $('.controls-container').removeClass('active-controls');
+                $('.controls-container[data-player="' + grid.currentPlayer + '"]').addClass('active-controls');
+            });
+            drawGrid();
+        });
+
+        $(document).keypress( function (event) {
+            var e = $('[data-code=' + event.keyCode + ']');
+            if(e!='undefined')
+            {
+                e.click();
+            }
+        });
+
+
+        function drawClick()
+        {
+
+            var gridWidth = 72;
+            var gridHeight = 36;
+            grid.initializeGrid(gridWidth, gridHeight);
+
+            grid.playerCountElements[1] = $('#score1');
+            grid.playerCountElements[2] = $('#score2');
+
+            grid.setPlayerCell(0, 0, 1);
+            grid.setPlayerCell(gridWidth - 1, gridHeight - 1, 2);
+
+            
+
+            drawGrid();
+        }
+
+        function drawGrid()
+        {
+            grid.drawCanvas(document.getElementById('test'));
+
+        }
+    </script>
+</body>
+</html>
