@@ -216,17 +216,24 @@ class gameGrid {
 
 
         for (var y = 0; y < this.grid.length; y++) {
+            var row = document.createElement('div');
+            row.className += 'row';
+
+            row = $(row);
+            row.height(this.verticalStepDivs);
+            
+            this.divsContainer.append(row);
             for (var x = 0; x < this.grid[y].length; x++) {
 
                 var div = document.createElement('div');
-                div.className += 'cell';
-                div.className += ' hexagon';
-                this.divsContainer.append(div);
+                var cell = document.createElement('div');
+                div.className = 'cell-container';
+
                 div.setAttribute('data-pos', '(' + x + ',' + y + ')');
 
-                var top = y * this.verticalStepDivs;
-                var left = x * this.horizontalStepDivs;
 
+                var top = this.verticalStepDivs * y;
+                var left = this.horizontalStepDivs * x;
                 if ((x % 2) == 0) {
                     top += this.verticalStepDivs / 2;
                 }
@@ -237,7 +244,9 @@ class gameGrid {
                 div.style.top = top + 'px';
                 div.style.width = this.horizontalStepDivs / 3 * 2 + 'px';
                 div.style.height = this.verticalStepDivs + 'px';
-                div.style.backgroundColor = this.grid[y][x].colorString();
+                cell.className = 'cell hexagon hexagon-' + this.grid[y][x].colorString();
+                row.append(div);
+                $(div).append(cell);
 
 
 
