@@ -65,6 +65,9 @@
     <Content Include="Tests\GameGrid_WhenPlayerChangesColor_CapturesCells.html">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="Tests\Grid_DrawsCorrectly_WithDivs.html">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Tests\HotSeat.css">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

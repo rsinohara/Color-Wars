@@ -1,12 +1,51 @@
-﻿body
-{
-}
-
+﻿
+* { box-sizing: border-box; margin: 0; padding: 0; }
 
 .score{
     border:2px solid red;
     float:left;
 }
+
+.hexagon {
+	width: 100px;
+	height: 55px;
+	background: red;
+	position: relative;
+}
+.hexagon:before {
+	content: "";
+	position: absolute;
+	top: -25px;
+	left: 0;
+	width: 0;
+	height: 0;
+	border-left: 50px solid transparent;
+	border-right: 50px solid transparent;
+	border-bottom: 25px solid red;
+}
+.hexagon:after {
+	content: "";
+	position: absolute;
+	bottom: -25px;
+	left: 0;
+	width: 0;
+	height: 0;
+	border-left: 50px solid transparent;
+	border-right: 50px solid transparent;
+	border-top: 25px solid red;
+}
+
+
+#test {
+   height:480px;
+   width:800px;
+   position:relative;
+}
+
+/*.cell {
+    position:absolute;
+    display:inline;
+}*/
 
 .darkClass
 {

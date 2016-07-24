@@ -56,13 +56,24 @@ class gameGrid {
         return tmp;
     }
 
-    initSteps() {
+    initCanvasSteps() {
 
         //Need to make room for offset rows
         this.horizontalStep = this.canvasWidth / (3 + (this.horizontalCount - 1) * 2);
 
         //This will change for hexagonal cells
         this.verticalStep = this.canvasHeight / (this.verticalCount + 0.5);
+
+
+    }
+
+    initDivsSteps() {
+
+        //Need to make room for offset rows
+        this.horizontalStepDivs = this.containerWidth / ( (this.horizontalCount) );
+
+        //This will change for hexagonal cells
+        this.verticalStepDivs = this.containerHeight / (this.verticalCount + 0.5);
 
 
     }
@@ -105,7 +116,7 @@ class gameGrid {
             }
         }
 
-        this.drawCanvas();
+        this.draw();
         
         this.updateScores();
 
@@ -174,6 +185,68 @@ class gameGrid {
         cell.surrounded=surrounded
     }
 
+    draw() {
+        if(this.usingCanvas)
+        {
+            this.drawCanvas();
+        }
+        if(this.usginDivs)
+        {
+            this.drawDivs();
+        }
+    }
+
+    drawDivs(e) {
+        if (arguments.length >= 1) {
+            this.divsContainer = e;
+            this.usingDivs = true;
+            this.containerWidth = e.width();
+            this.containerHeight = e.height();
+        }
+        var parent = this.divsContainer;
+
+        if(parent.children().length==0)
+        {
+            this.createDivs();
+        }
+    }
+
+    createDivs() {
+        this.initDivsSteps();
+
+
+        for (var y = 0; y < this.grid.length; y++) {
+            for (var x = 0; x < this.grid[y].length; x++) {
+
+                var div = document.createElement('div');
+                div.className += 'cell';
+                div.className += ' hexagon';
+                this.divsContainer.append(div);
+                div.setAttribute('data-pos', '(' + x + ',' + y + ')');
+
+                var top = y * this.verticalStepDivs;
+                var left = x * this.horizontalStepDivs;
+
+                if ((x % 2) == 0) {
+                    top += this.verticalStepDivs / 2;
+                }
+  
+
+
+                div.style.left = left + 'px';
+                div.style.top = top + 'px';
+                div.style.width = this.horizontalStepDivs / 3 * 2 + 'px';
+                div.style.height = this.verticalStepDivs + 'px';
+                div.style.backgroundColor = this.grid[y][x].colorString();
+
+
+
+            }
+        }
+
+
+    }
+
     drawCanvas(e) {
 
         //If a canvas was passed, save it
@@ -181,6 +254,7 @@ class gameGrid {
         {
             this.canvas = e;
             this.canvasContext = this.canvas.getContext("2d");
+            this.usingCanvas = true;
         }
 
         var ctx = this.canvasContext;
@@ -193,7 +267,7 @@ class gameGrid {
         ctx.clearRect(0, 0, this.canvasWidth, this.canvasHeight);
 
         //Initializes drawing steps
-        this.initSteps();
+        this.initCanvasSteps();
 
         var dx = this.horizontalStep / 2*3;
         var dy = this.verticalStep / 2;

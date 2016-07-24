@@ -12,3 +12,4 @@ C:\Users\Renato\OneDrive\SPI\Portfolio\ColorWars\obj\Debug\ColorWars.pdb
 C:\Users\Renato\OneDrive\SPI\Portfolio\ColorWars\obj\Debug\ColorWars.csprojResolveAssemblyReference.cache
 C:\Users\Renato\OneDrive\SPI\Portfolio\ColorWars\bin\Debug\Tests\HotSeatGame_Works.html
 C:\Users\Renato\OneDrive\SPI\Portfolio\ColorWars\bin\Debug\Tests\HotSeat.css
+C:\Users\Renato\OneDrive\SPI\Portfolio\ColorWars\bin\Debug\Tests\Grid_DrawsCorrectly_WithDivs.html
