@@ -1,15 +1,13 @@
-﻿body
-{
+﻿body {
+  text-align: center;
 }
 
-
-.score{
+.score {
     border:2px solid red;
     float:left;
 }
 
-.darkClass
-{
+.darkClass {
     background-color: white;
     filter:alpha(opacity=50); /* IE */
     opacity: 0.5; /* Safari, Opera */
@@ -24,15 +22,16 @@
     left: 0px;
 }
 
-.active-controls > .darkClass{
+.active-controls > .darkClass {
     display:none;
 }
 
-.controls-container{
+.controls-container {
     border:3px solid black;
     position:relative;
     display:block;
 }
-.active-controls{
+
+.active-controls {
     border:3px solid red;
 }
