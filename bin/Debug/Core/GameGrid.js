@@ -56,13 +56,42 @@ class gameGrid {
         return tmp;
     }
 
-    initSteps() {
+    initCanvasSteps() {
 
         //Need to make room for offset rows
         this.horizontalStep = this.canvasWidth / (3 + (this.horizontalCount - 1) * 2);
 
         //This will change for hexagonal cells
         this.verticalStep = this.canvasHeight / (this.verticalCount + 0.5);
+
+
+    }
+
+    initDivsSteps() {
+
+
+        
+
+        
+        var r=Math.sqrt(3)/2;
+
+        //Vertical step is calculated first because it is taken into account on overlap calculation
+        this.divHeight = this.containerHeight / (this.verticalCount + 0.5 + (1 - r) / 2);
+        
+        //Then vertical steps are corrected to account for the symetry adjustment
+        this.divHeight = this.divHeight / r;
+        
+        var nx = this.horizontalCount;
+        //Then horizontal step with overlap taken into account
+        this.divWidth = 4 * this.containerWidth / (3 * nx + 1);
+
+
+        
+
+
+
+        this.divHeight =  Math.min(this.divHeight, this.divWidth);
+        this.divWidth = this.divHeight;
 
 
     }
@@ -105,7 +134,7 @@ class gameGrid {
             }
         }
 
-        this.drawCanvas();
+        this.draw();
         
         this.updateScores();
 
@@ -174,6 +203,86 @@ class gameGrid {
         cell.surrounded=surrounded
     }
 
+    draw() {
+        if(this.usingCanvas)
+        {
+            this.drawCanvas();
+        }
+        if(this.usginDivs)
+        {
+            this.drawDivs();
+        }
+    }
+
+    drawDivs(e) {
+        if (arguments.length >= 1) {
+            this.divsContainer = e;
+            this.usingDivs = true;
+            this.containerWidth = e.width();
+            this.containerHeight = e.height();
+        }
+        var parent = this.divsContainer;
+
+        if(parent.children().length==0)
+        {
+            this.createDivs();
+        }
+    }
+
+    createDivs() {
+        this.initDivsSteps();
+
+
+        for (var y = 0; y < this.grid.length; y++) {
+            //var row = document.createElement('div');
+            //row.className += 'row';
+
+            //row = $(row);
+            //row.height(this.divHeight);
+            
+            //this.divsContainer.append(row);
+            for (var x = 0; x < this.grid[y].length; x++) {
+
+                var div = document.createElement('div');
+                var cell = document.createElement('div');
+                div.className = 'cell-container';
+
+                div.setAttribute('data-pos', '(' + x + ',' + y + ')');
+
+                var r=Math.sqrt(3)/2
+                var top = (this.divHeight * r  * y)-(this.divHeight*(1-r)/2);
+
+                //Position taking into account overlap
+                var left = ((this.divWidth / 2 + this.divHeight / 4) * x);
+                if ((x % 2) == 0) {
+                    top += (this.divHeight * r / 2);
+                }
+  
+
+
+                div.style.left = left + 'px';
+                div.style.top = top + 'px';
+                div.style.width = this.divWidth  + 'px';
+                div.style.height = this.divHeight + 'px';
+                cell.className = 'cell content hexagon hexagon-' + this.grid[y][x].colorString();
+                cell.setAttribute('data-content', '1');
+                this.divsContainer.append(div);
+                $(div).append(cell);
+
+                var maskLeft = document.createElement('div');
+                maskLeft.className = "cell-mask-left";
+                var maskRight = document.createElement('div');
+                maskRight.className = "cell-mask-right";
+
+                $(cell).append(maskLeft);
+                $(cell).append(maskRight);
+
+            }
+        }
+
+
+    }
+
     drawCanvas(e) {
 
         //If a canvas was passed, save it
@@ -181,6 +290,7 @@ class gameGrid {
         {
             this.canvas = e;
             this.canvasContext = this.canvas.getContext("2d");
+            this.usingCanvas = true;
         }
 
         var ctx = this.canvasContext;
@@ -193,7 +303,7 @@ class gameGrid {
         ctx.clearRect(0, 0, this.canvasWidth, this.canvasHeight);
 
         //Initializes drawing steps
-        this.initSteps();
+        this.initCanvasSteps();
 
         var dx = this.horizontalStep / 2*3;
         var dy = this.verticalStep / 2;

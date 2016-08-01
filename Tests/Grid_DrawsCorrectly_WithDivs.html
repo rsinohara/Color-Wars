@@ -1,0 +1,37 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <script src="../Libraries/jquery-1.10.2.js"></script>
+    <script src="../Core/utilities.js"></script>
+    <script src="../Core/gameCell.js"></script>
+    <script src="../Core/gameGrid.js"></script>
+    <link rel="stylesheet" type="text/css" href="HotSeat.css">
+ 
+
+    <title></title>
+</head>
+<body>
+    <div>
+        <p>This simply tests that the game grid is able to draw itself with divs.</p>
+    </div>
+    <br />
+    <div id="test" style="background-color:black"></div>
+    <input type="submit" value="Draw" onclick="drawClick()" />
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            drawClick();
+        });
+
+        function drawClick()
+        {
+            var grid = new gameGrid;
+
+            grid.initializeGrid(72, 36);
+            grid.drawDivs($('#test'));
+        }
+    </script>
+</body>
+</html>
