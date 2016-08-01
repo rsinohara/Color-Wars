@@ -14,8 +14,9 @@
 </head>
 <body>
     <div>
-        <p>This simply tests that the game grid is able to draw itself on a canvas.</p>
+        <p>This simply tests that the game grid is able to draw itself with divs.</p>
     </div>
+    <br />
     <div id="test" style="background-color:black"></div>
     <input type="submit" value="Draw" onclick="drawClick()" />
 
@@ -28,7 +29,7 @@
         {
             var grid = new gameGrid;
 
-            grid.initializeGrid(12, 6);
+            grid.initializeGrid(72, 36);
             grid.drawDivs($('#test'));
         }
     </script>
