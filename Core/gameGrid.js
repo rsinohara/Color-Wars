@@ -268,13 +268,13 @@ class gameGrid {
                 this.divsContainer.append(div);
                 $(div).append(cell);
 
-                var maskLeft = document.createElement('div');
-                maskLeft.className = "cell-mask-left";
-                var maskRight = document.createElement('div');
-                maskRight.className = "cell-mask-right";
+                //var maskLeft = document.createElement('div');
+                //maskLeft.className = "cell-mask-left";
+                //var maskRight = document.createElement('div');
+                //maskRight.className = "cell-mask-right";
 
-                $(cell).append(maskLeft);
-                $(cell).append(maskRight);
+                //$(cell).append(maskLeft);
+                //$(cell).append(maskRight);
 
             }
         }

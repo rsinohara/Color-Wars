@@ -265,17 +265,16 @@ class gameGrid {
                 div.style.width = this.divWidth  + 'px';
                 div.style.height = this.divHeight + 'px';
                 cell.className = 'cell content hexagon hexagon-' + this.grid[y][x].colorString();
-                cell.setAttribute('data-content', '1');
                 this.divsContainer.append(div);
                 $(div).append(cell);
 
-                var maskLeft = document.createElement('div');
-                maskLeft.className = "cell-mask-left";
-                var maskRight = document.createElement('div');
-                maskRight.className = "cell-mask-right";
+                //var maskLeft = document.createElement('div');
+                //maskLeft.className = "cell-mask-left";
+                //var maskRight = document.createElement('div');
+                //maskRight.className = "cell-mask-right";
 
-                $(cell).append(maskLeft);
-                $(cell).append(maskRight);
+                //$(cell).append(maskLeft);
+                //$(cell).append(maskRight);
 
             }
         }
